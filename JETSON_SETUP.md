@@ -110,13 +110,19 @@ sudo rosdep init
 rosdep update
 echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
-sudo apt-get install python-rosinstall
+sudo apt-get install python-wstool
 ```
 
 ### Setup ROS Workspace
 
 ```shell
-mkdir -p ~/catkin_ws/src
-cd ~/catkin_ws/src
-
+mkdir -p ~/zebrafish_tracker_ws/src
+cd ~/zebrafish_tracker_ws/src
+git clone https://github.com/janelia-ros/zebrafish_tracker.git
+cd ..
+wstool init src src/zebrafish_tracker/.rosinstall
+rosdep install --from-paths . --reinstall
+catkin_make
+echo "source ~/zebrafish_tracker_ws/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc
 ```
