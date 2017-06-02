@@ -76,30 +76,24 @@ sudo apt-get update
 sudo apt-get dist-upgrade
 sudo apt-get autoremove
 sudo apt-get install xubuntu-desktop
+sudo apt-get install git
 sudo reboot
 ```
 
-### Setup environment
+### Install FlyCapture2
+
+<https://www.ptgrey.com/support/downloads>
+
+Download FlyCapture 2 for ARM64.
 
 ```shell
-sudo apt-get install emacs git -y
-mkdir ~/git
-cd ~/git
-git clone https://github.com/peterpolidoro/home.git
-mkdir ~/virtualenvs
-cd ~/virtualenvs
-sudo apt-get install virtualenv -y
-virtualenv diskwalk2
-source diswalk2/bin/activate
-pip install diskwalk2
-cd ~/git/home
-symlinks.py -i -p
-deactivate
-cd ~/git
-git clone https://github.com/janelia-idf/zebrafish_tracker
+tar xvfz flycapture-<version>_arm.tar.gz
+cd flycapture-<version>_arm/lib
+sudo cp libflycapture* /usr/lib
+cd ..
+sudo ./flycap2-conf
+sudo reboot
 ```
-
-### Install FlyCapture2
 
 ### Install ROS
 
