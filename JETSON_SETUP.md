@@ -87,11 +87,12 @@ sudo reboot
 Download FlyCapture 2 for ARM64.
 
 ```shell
+sudo apt-get update
+sudo apt-get install build-essential
 tar xvfz flycapture-<version>_arm.tar.gz
-cd flycapture-<version>_arm/lib
-sudo cp libflycapture* /usr/lib
-cd ..
+cd flycapture-<version>_arm
 sudo ./flycap2-conf
+echo "usbcore.usbfs_memory_mb=1000" | sudo tee -a /boot/extlinux/extlinux.conf
 sudo reboot
 ```
 
