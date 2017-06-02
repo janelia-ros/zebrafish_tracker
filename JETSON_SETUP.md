@@ -89,12 +89,20 @@ Download FlyCapture 2 for ARM64.
 ```shell
 sudo apt-get update
 sudo apt-get install build-essential
+sudo apt-get install libraw1394-11 libgtkmm-2.4-1v5 libglademm-2.4-1v5 libgtkglextmm-x11-1.2-dev libgtkglextmm-x11-1.2 libusb-1.0-0
 tar xvfz flycapture-<version>_arm.tar.gz
 cd flycapture-<version>_arm
 sudo ./flycap2-conf
-echo "usbcore.usbfs_memory_mb=1000" | sudo tee -a /boot/extlinux/extlinux.conf
 sudo reboot
 ```
+
+The steps above will allow you to stream your USB3 camera at a maximum image size of 2 MB. To acquire images greater than 2 MB in resolution, add the following to the APPEND line:
+
+usbcore.usbfs_memory_mb=1000
+
+to this file:
+
+/boot/extlinux/extlinux.conf
 
 ### Install ROS
 
