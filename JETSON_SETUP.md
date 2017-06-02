@@ -99,6 +99,8 @@ cd ~/git
 git clone https://github.com/janelia-idf/zebrafish_tracker
 ```
 
+### Install FlyCapture2
+
 ### Install ROS
 
 ```shell
@@ -109,10 +111,12 @@ sudo apt-get install ros-kinetic-desktop-full
 ```
 
 ```shell
+sudo apt-get update
+sudo c_rehash /etc/ssl/certs
+sudo rosdep init
 cd ~/git
 git clone https://github.com/janelia-ros/rosdep_sources.git
 sudo cp ~/git/rosdep_sources/19-janelia.list /etc/ros/rosdep/sources.list.d/19-janelia.list
-sudo rosdep init
 rosdep update
 echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
