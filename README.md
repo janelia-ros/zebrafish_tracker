@@ -16,6 +16,10 @@ roslaunch pointgrey_camera_driver camera.launch
 ```
 
 ```shell
+rosrun rqt_reconfigure rqt_reconfigure
+```
+
+```shell
 rosrun image_view image_view image:=/camera/image_raw _image_transport:=theora
 ```
 
