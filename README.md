@@ -42,4 +42,6 @@ rostopic hz /camera/image_raw
 ```shell
 mkdir ~/bin
 ln -s ~/zebrafish_tracker_ws/src/zebrafish_tracker/zebrafish_tracker ~/bin/zebrafish_tracker
+echo "export PATH=$HOME/bin:$PATH" >> ~/.bashrc
+source ~/.bashrc
 ```
