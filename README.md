@@ -8,6 +8,12 @@ License:
 
     BSD
 
+## Run
+
+```shell
+zebrafish_tracker
+```
+
 ## Run Nodes Independently
 
 ```shell
@@ -31,3 +37,9 @@ rostopic echo /camera/image_raw | grep -e height -e width
 rostopic hz /camera/image_raw
 ```
 
+## Install
+
+```shell
+mkdir ~/bin
+ln -s ~/zebrafish_tracker_ws/src/zebrafish_tracker/zebrafish_tracker ~/bin/zebrafish_tracker
+```

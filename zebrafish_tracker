@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "roslaunch zebrafish_tracker_launch first.launch &"
+roslaunch zebrafish_tracker_launch first.launch &
+echo "sleep 5"
+sleep 5
+echo "zebrafish_tracker running!"
+echo "press ctrl-c a couple of times in this terminal to stop all zebrafish_tracker processes."
+sleep infinity
