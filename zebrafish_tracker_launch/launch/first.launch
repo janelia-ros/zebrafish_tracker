@@ -17,8 +17,8 @@
            camera itself. Use this parameter to override that value for cameras capable of
            other framerates. -->
 
-      <param name="video_mode" value="format7_mode2" />
-      <param name="frame_rate" value="100" />
+      <param name="video_mode" value="format7_mode0" />
+      <param name="frame_rate" value="163" />
       <param name="format7_color_coding" value="mono8" />
 
       <!-- Anti flickering stuff-->
