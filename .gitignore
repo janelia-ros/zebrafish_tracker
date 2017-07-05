@@ -1,3 +1,5 @@
+*.png
+
 build/
 bin/
 lib/
@@ -73,6 +75,11 @@ CATKIN_IGNORE
 # Executables
 *.exe
 *.out
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+
 *.app
 
 # Byte-compiled / optimized / DLL files
