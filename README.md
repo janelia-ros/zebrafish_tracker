@@ -52,7 +52,7 @@ mkdir -p ~/zebrafish_ws/src
 cd ~/zebrafish_ws/src
 ln -s ~/git/ros/zebrafish_tracker/
 ln -s ~/git/ros/blob_tracker_ros/
-ln -s ~/git/ros/raw_video_stream/
+ln -s ~/git/ros/raw_video_stream_ros/
 cd ~/zebrafish_ws
 catkin_make
 source ~/zebrafish_ws/devel/setup.bash

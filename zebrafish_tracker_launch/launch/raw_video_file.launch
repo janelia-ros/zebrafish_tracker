@@ -19,6 +19,12 @@
     <!-- <arg name="background_image_path" value="" /> -->
   </include>
 
+  <node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure" />
+
+  <!-- <node if="$(arg visualize)" name="camera_foreground_view" pkg="image_view" type="image_view"> -->
+  <!--   <remap from="image" to="/camera/blob_out/foreground_raw" /> -->
+  <!-- </node> -->
+
   <node if="$(arg visualize)" name="camera_image_view" pkg="image_view" type="image_view">
     <remap from="image" to="/camera/blob_out/image_raw" />
   </node>
