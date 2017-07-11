@@ -255,13 +255,16 @@ void processImages(char* first_frame_filename)
 
 void processRawVideo(char* video_filename)
 {
-  int IMAGE_WIDTH = 1920;
+  // int IMAGE_WIDTH = 1920;
+  // int IMAGE_HEIGHT = 1200;
+  int IMAGE_WIDTH = 1024;
   int IMAGE_HEIGHT = 1200;
   Mat img;
   FILE * fp = NULL;
   unsigned char * imagedata = NULL;
   int framesize = IMAGE_WIDTH * IMAGE_HEIGHT;
-  int framecount = 1000;
+  // int framecount = 1000;
+  int framecount = 1600;
 
   //Open raw Bayer image.
   fp = fopen(video_filename, "rb");

@@ -1,0 +1,26 @@
+<launch>
+  <arg name="video_stream_provider" doc="full path to the video file" />
+  <arg name="fps" doc="frames per second output rate" />
+  <arg name="width" doc="image width in pixels" />
+  <arg name="height" doc="image height in pixels" />
+  <arg name="frame_count" doc="number of images to read in file" />
+  <arg name="visualize" default="true" doc="display with image_view" />
+
+  <include file="$(find raw_video_stream)/launch/raw_video_file.launch" >
+    <arg name="video_stream_provider" value="$(arg video_stream_provider)" />
+    <arg name="fps" value="$(arg fps)" />
+    <arg name="width" value="$(arg width)" />
+    <arg name="height" value="$(arg height)" />
+    <arg name="frame_count" value="$(arg frame_count)" />
+    <arg name="visualize" value="$(arg visualize)" />
+  </include>
+
+  <include file="$(find blob_tracker)/launch/blob_tracker.launch" >
+    <arg name="background_image_path" value="" />
+  </include>
+
+  <node if="$(arg visualize)" name="camera_image_view" pkg="image_view" type="image_view">
+    <remap from="image" to="/camera/blob_out/image_raw" />
+  </node>
+
+</launch>
