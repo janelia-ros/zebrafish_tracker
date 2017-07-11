@@ -24,7 +24,7 @@
     <remap from="image" to="/camera/blob_out/image_raw" />
   </node>
 
-  <include file="$(find image_stream_to_heatmap)/launch/image_stream_to_heatmap.launch" >
+  <include file="$(find image_topic_to_image)/launch/image_topic_to_image.launch" >
   </include>
 
 </launch>

@@ -53,7 +53,7 @@ cd ~/zebrafish_ws/src
 ln -s ~/git/ros/zebrafish_tracker/
 ln -s ~/git/ros/blob_tracker_ros/
 ln -s ~/git/ros/raw_video_stream_ros/
-ln -s ~/git/ros/image_stream_to_heatmap_ros/
+ln -s ~/git/ros/image_topic_to_image_ros/
 cd ~/zebrafish_ws
 catkin_make
 source ~/zebrafish_ws/devel/setup.bash
