@@ -16,7 +16,7 @@
   </include>
 
   <include file="$(find blob_tracker)/launch/blob_tracker.launch" >
-    <arg name="background_image_path" value="" />
+    <!-- <arg name="background_image_path" value="" /> -->
   </include>
 
   <node if="$(arg visualize)" name="camera_image_view" pkg="image_view" type="image_view">
