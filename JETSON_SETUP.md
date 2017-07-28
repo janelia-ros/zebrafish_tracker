@@ -90,9 +90,6 @@ Press <ctrl><alt>t to open a terminal in Unity.
 ```shell
 # Update the needed repositories for the ROS on the Jetson
 # Configure repositories
-sudo apt-add-repository universe
-sudo apt-add-repository multiverse
-sudo apt-add-repository restricted
 sudo apt-get update
 sudo apt-get dist-upgrade
 sudo apt-get autoremove
@@ -110,6 +107,7 @@ sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C
 # Installation
 sudo apt-get update
 sudo apt-get install ros-kinetic-desktop-full
+sudo apt-get clean
 # Initialize rosdep
 sudo apt-get install python-rosdep -y
 # ssl certificates can get messed up on TX1 for some reason
