@@ -7,7 +7,7 @@ Setup host PC with Xubuntu 14.04:
 
 <http://cdimage.ubuntu.com/xubuntu/releases/14.04/release/>
 
-On host PC, download JetPack:
+On host PC, download JetPack (requires registration and login):
 
 <https://developer.nvidia.com/embedded/jetpack>
 
@@ -27,7 +27,15 @@ Automatically resolve dependency conflicts.
 
 Install on host PC.
 
-Put Jetson board in Force USB Recovery Mode to install on Jetson device.
+Connect Jetson to the network.
+
+Select Network Layout.
+
+Select Network Interface on host PC.
+
+## Jetson
+
+### Put Jetson board in Force USB Recovery Mode
 
 To place system in Force USB Recovery Mode:
 
@@ -39,7 +47,7 @@ To place system in Force USB Recovery Mode:
    Micro-B) Port on the device and the other end to an available USB
    port on the host PC.
 
-3. Connect the power adapter to the device.
+3. Connect the power adapter to the device. Press and release power button.
 
 4. With the system powered on:
 
@@ -50,7 +58,13 @@ To place system in Force USB Recovery Mode:
 
 7. Wait 2 seconds and release the RECOVERY FORCE button.
 
-## Jetson
+8. Run lsusb on host PC to make sure NVidia Corp. device is listed.
+
+### Install on Jetson Board
+
+Press enter on host PC to install on Jetson board in recovery mode.
+
+### Jetson Setup
 
 1. Connect a USB keyboard to the USB Type A connector of your device.
 
@@ -71,6 +85,8 @@ To place system in Force USB Recovery Mode:
 
 ### Update and Install Xubuntu
 
+Press <ctrl><alt>t to open a terminal in Unity.
+
 ```shell
 sudo apt-get update
 sudo apt-get dist-upgrade
@@ -79,30 +95,6 @@ sudo apt-get install xubuntu-desktop
 sudo apt-get install git
 sudo reboot
 ```
-
-### Install FlyCapture2
-
-<https://www.ptgrey.com/support/downloads>
-
-Download FlyCapture 2 for ARM64.
-
-```shell
-sudo apt-get update
-sudo apt-get install build-essential
-sudo apt-get install libraw1394-11 libgtkmm-2.4-1v5 libglademm-2.4-1v5 libgtkglextmm-x11-1.2-dev libgtkglextmm-x11-1.2 libusb-1.0-0
-tar xvfz flycapture-<version>_arm.tar.gz
-cd flycapture-<version>_arm
-sudo ./flycap2-conf
-sudo reboot
-```
-
-The steps above will allow you to stream your USB3 camera at a maximum image size of 2 MB. To acquire images greater than 2 MB in resolution, add the following to the APPEND line:
-
-usbcore.usbfs_memory_mb=1000
-
-to this file:
-
-/boot/extlinux/extlinux.conf
 
 ### Install ROS
 
@@ -139,3 +131,31 @@ catkin_make
 echo "source ~/zebrafish_tracker_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
+
+### Modify extlinux.conf
+
+The steps above will allow you to stream your USB3 camera at a maximum image
+size of 2 MB. To acquire images greater than 2 MB in resolution, add the
+following to the APPEND line:
+
+usbcore.usbfs_memory_mb=1000
+
+to this file:
+
+/boot/extlinux/extlinux.conf
+
+<!-- ### Install FlyCapture2 -->
+
+<!-- <https://www.ptgrey.com/support/downloads> -->
+
+<!-- Download FlyCapture 2 for ARM64. -->
+
+<!-- ```shell -->
+<!-- sudo apt-get update -->
+<!-- sudo apt-get install build-essential -->
+<!-- sudo apt-get install libraw1394-11 libgtkmm-2.4-1v5 libglademm-2.4-1v5 libgtkglextmm-x11-1.2-dev libgtkglextmm-x11-1.2 libusb-1.0-0 -->
+<!-- tar xvfz flycapture-<version>_arm.tar.gz -->
+<!-- cd flycapture-<version>_arm -->
+<!-- sudo ./flycap2-conf -->
+<!-- sudo reboot -->
+<!-- ``` -->
