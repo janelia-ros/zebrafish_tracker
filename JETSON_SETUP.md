@@ -88,6 +88,11 @@ Press enter on host PC to install on Jetson board in recovery mode.
 Press <ctrl><alt>t to open a terminal in Unity.
 
 ```shell
+# Update the needed repositories for the ROS on the Jetson
+# Configure repositories
+sudo apt-add-repository universe
+sudo apt-add-repository multiverse
+sudo apt-add-repository restricted
 sudo apt-get update
 sudo apt-get dist-upgrade
 sudo apt-get autoremove
@@ -99,23 +104,25 @@ sudo reboot
 ### Install ROS
 
 ```shell
+# Setup sources.lst
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+# Installation
 sudo apt-get update
 sudo apt-get install ros-kinetic-desktop-full
-```
-
-```shell
-sudo apt-get update
+# Initialize rosdep
+sudo apt-get install python-rosdep -y
+# ssl certificates can get messed up on TX1 for some reason
 sudo c_rehash /etc/ssl/certs
+# Initialize rosdep
 sudo rosdep init
-cd ~/git
-git clone https://github.com/janelia-ros/rosdep_sources.git
-sudo cp ~/git/rosdep_sources/19-janelia.list /etc/ros/rosdep/sources.list.d/19-janelia.list
+# To find available packages, use:
 rosdep update
+# Environment Setup
 echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
-sudo apt-get install python-wstool
+# Install rosinstall
+sudo apt-get install python-rosinstall -y
 ```
 
 ### Setup ROS Workspace
