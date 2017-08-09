@@ -57,6 +57,9 @@ rostopic hz /camera/image_raw
 mkdir -p ~/git
 cd ~/git
 git clone https://github.com/janelia-ros/zebrafish_tracker.git
+git clone https://github.com/janelia-ros/blob_tracker_ros.git
+git clone https://github.com/janelia-ros/raw_video_stream_ros.git
+git clone https://github.com/janelia-ros/image_topic_to_image_ros.git
 mkdir -p ~/zebrafish_ws/src
 cd ~/zebrafish_ws/src
 ln -s ~/git/ros/zebrafish_tracker/
@@ -64,6 +67,7 @@ ln -s ~/git/ros/blob_tracker_ros/
 ln -s ~/git/ros/raw_video_stream_ros/
 ln -s ~/git/ros/image_topic_to_image_ros/
 cd ~/zebrafish_ws
+wstool init src src/zebrafish_tracker/.rosinstall
 catkin_make
 source ~/zebrafish_ws/devel/setup.bash
 ```
