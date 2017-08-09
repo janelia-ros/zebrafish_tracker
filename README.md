@@ -54,6 +54,9 @@ rostopic hz /camera/image_raw
 ### Zebrafish Tracker Repositories
 
 ```shell
+mkdir -p ~/git
+cd ~/git
+git clone https://github.com/janelia-ros/zebrafish_tracker.git
 mkdir -p ~/zebrafish_ws/src
 cd ~/zebrafish_ws/src
 ln -s ~/git/ros/zebrafish_tracker/
