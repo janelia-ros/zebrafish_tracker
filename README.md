@@ -47,6 +47,12 @@ rostopic hz /camera/image_raw
 
 ## Install
 
+### Setup Jetson
+
+[nvidia_jetson_setup](https://github.com/janelia-idf/nvidia_jetson_setup.git)
+
+### Zebrafish Tracker Repositories
+
 ```shell
 mkdir -p ~/zebrafish_ws/src
 cd ~/zebrafish_ws/src
