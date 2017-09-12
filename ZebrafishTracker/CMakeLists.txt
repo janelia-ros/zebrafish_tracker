@@ -8,11 +8,17 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 
 find_package( FlyCapture REQUIRED )
-MESSAGE( STATUS "FLYCAPTURE_INCLUDE_DIRS: " ${FLYCAPTURE_INCLUDE_DIRS} )
-MESSAGE( STATUS "FLYCAPTURE_LIBRARIES: " ${FLYCAPTURE_LIBRARIES} )
 include_directories( ${FLYCAPTURE_INCLUDE_DIRS} )
-add_executable(ZebrafishTracker ${PROJECT_SOURCE_DIR}/src/ZebrafishTracker.cpp)
-target_link_libraries( ZebrafishTracker ${FLYCAPTURE_LIBRARIES} )
+
+find_package( Boost COMPONENTS timer thread REQUIRED )
+include_directories( ${Boost_INCLUDE_DIRS} )
+
+add_executable(ZebrafishTracker
+  ${PROJECT_SOURCE_DIR}/src/ZebrafishTracker.cpp
+  ${PROJECT_SOURCE_DIR}/src/FrameRateCounter.cpp)
+
+target_link_libraries( ZebrafishTracker ${FLYCAPTURE_LIBRARIES})
+target_link_libraries( ZebrafishTracker ${Boost_LIBRARIES} )
 
 # find_package( OpenCV REQUIRED )
 # include_directories( ${OpenCV_INCLUDE_DIRS} )

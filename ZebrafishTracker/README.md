@@ -14,7 +14,9 @@ License:
 
 ```shell
 sudo apt-get install cmake
-cd src
-cmake .
+sudo apt-get install libboost-all-dev
+mkdir build
+cd build
+cmake ..
 make
 ```
