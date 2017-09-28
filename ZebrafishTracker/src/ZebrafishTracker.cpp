@@ -30,6 +30,7 @@
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 
 
 using namespace FlyCapture2;
@@ -67,6 +68,8 @@ void PrintCameraInfo(CameraInfo *pCamInfo)
 
 void PrintError(Error error) { error.PrintErrorTrace(); }
 
+void processImage(Mat frame);
+
 int RunSingleCamera(PGRGuid guid)
 {
   const int k_numImages = 100;
@@ -103,7 +106,10 @@ int RunSingleCamera(PGRGuid guid)
   }
 
   // Set the number of driver buffers used to 10.
-  config.numBuffers = 10;
+  // config.numBuffers = 10;
+  config.numBuffers = 300;
+  config.grabMode = BUFFER_FRAMES;
+  config.highPerformanceRetrieveBuffer = true;
 
   // Set the camera configuration
   error = cam.SetConfiguration(&config);
@@ -154,7 +160,11 @@ int RunSingleCamera(PGRGuid guid)
     unsigned int rowBytes = (double)rgbImage.GetReceivedDataSize()/(double)rgbImage.GetRows();
     cv::Mat image = cv::Mat(rgbImage.GetRows(), rgbImage.GetCols(), CV_8UC3, rgbImage.GetData(),rowBytes);
 
-    // // Create a unique filename
+    // convert to greyscale
+    cv::Mat greyMat;
+    cv::cvtColor(image, greyMat, CV_BGR2GRAY);
+
+// // Create a unique filename
 
     // ostringstream filename;
     // filename << "FlyCapture2Test-" << camInfo.serialNumber << "-"
@@ -239,4 +249,42 @@ int main(int /*argc*/, char ** /*argv*/)
   cin.ignore();
 
   return 0;
+}
+
+void processImage(Mat frame)
+{
+  //show the current frame and the fg masks
+  // imshow("Frame", frame);
+
+  // imshow("FG Mask MOG 2", fg_mask_mog_2);
+
+  //update the background model
+  // mog_2_ptr->apply(frame, fg_mask_mog_2);
+
+  // if (fg_mask_sum_initialized)
+  // {
+  //   add(fg_mask_sum,fg_mask_mog_2,fg_mask_sum,noArray(),CV_64F);
+  // }
+  // else
+  // {
+  //   fg_mask_sum = fg_mask_mog_2;
+  //   fg_mask_sum.convertTo(fg_mask_sum,CV_64F);
+  //   fg_mask_sum_initialized = true;
+  // }
+  //get the frame number and write it on the current frame
+  // stringstream ss;
+  // rectangle(frame, cv::Point(10, 2), cv::Point(100,20),
+  //           cv::Scalar(255,255,255), -1);
+  // ss << capture.get(CAP_PROP_POS_FRAMES);
+  // string frameNumberString = ss.str();
+  // putText(frame, frameNumberString.c_str(), cv::Point(15, 15),
+  //         FONT_HERSHEY_SIMPLEX, 0.5 , cv::Scalar(0,0,0));
+  //show the current frame and the fg masks
+  // imshow("Frame", frame);
+  // imshow("FG Mask MOG 2", fg_mask_mog_2);
+  // normalize(fg_mask_sum,fg_mask_sum_normalized,0,255,NORM_MINMAX,CV_8U);
+  // applyColorMap(fg_mask_sum_normalized,fg_mask_sum_colored,COLORMAP_JET);
+
+  //get the input from the keyboard
+  // keyboard = waitKey(1);
 }
