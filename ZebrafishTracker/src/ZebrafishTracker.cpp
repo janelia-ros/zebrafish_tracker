@@ -28,6 +28,10 @@
 #include "FrameRateCounter.h"
 
 
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+
+
 using namespace FlyCapture2;
 using namespace std;
 
@@ -65,7 +69,7 @@ void PrintError(Error error) { error.PrintErrorTrace(); }
 
 int RunSingleCamera(PGRGuid guid)
 {
-  const int k_numImages = 1000;
+  const int k_numImages = 100;
 
   Error error;
 
@@ -121,8 +125,9 @@ int RunSingleCamera(PGRGuid guid)
   }
 
   Image rawImage;
-  Image convertedImage;
+  Image rgbImage;
 
+  cout << "Capturing " << k_numImages << " images." << endl;
   for (int imageCnt = 0; imageCnt < k_numImages; imageCnt++)
   {
     // Retrieve an image
@@ -137,12 +142,17 @@ int RunSingleCamera(PGRGuid guid)
     frame_rate_counter.NewFrame();
 
     // Convert the raw image
-    error = rawImage.Convert(PIXEL_FORMAT_MONO8, &convertedImage);
+    // error = rawImage.Convert(PIXEL_FORMAT_MONO8, &rgbImage);
+    error = rawImage.Convert(FlyCapture2::PIXEL_FORMAT_BGR, &rgbImage);
     if (error != PGRERROR_OK)
     {
         PrintError(error);
         return -1;
     }
+
+    // convert to OpenCV Mat
+    unsigned int rowBytes = (double)rgbImage.GetReceivedDataSize()/(double)rgbImage.GetRows();
+    cv::Mat image = cv::Mat(rgbImage.GetRows(), rgbImage.GetCols(), CV_8UC3, rgbImage.GetData(),rowBytes);
 
     // // Create a unique filename
 
@@ -152,7 +162,7 @@ int RunSingleCamera(PGRGuid guid)
 
     // // Save the image. If a file format is not passed in, then the file
     // // extension is parsed to attempt to determine the file format.
-    // error = convertedImage.Save(filename.str().c_str());
+    // error = rgbImage.Save(filename.str().c_str());
     // if (error != PGRERROR_OK)
     // {
     //     PrintError(error);

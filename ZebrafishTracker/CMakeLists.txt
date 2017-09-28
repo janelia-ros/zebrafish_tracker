@@ -13,14 +13,13 @@ include_directories( ${FLYCAPTURE_INCLUDE_DIRS} )
 find_package( Boost COMPONENTS timer thread REQUIRED )
 include_directories( ${Boost_INCLUDE_DIRS} )
 
+find_package( OpenCV REQUIRED )
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+
 add_executable(ZebrafishTracker
   ${PROJECT_SOURCE_DIR}/src/ZebrafishTracker.cpp
   ${PROJECT_SOURCE_DIR}/src/FrameRateCounter.cpp)
 
 target_link_libraries( ZebrafishTracker ${FLYCAPTURE_LIBRARIES})
 target_link_libraries( ZebrafishTracker ${Boost_LIBRARIES} )
-
-# find_package( OpenCV REQUIRED )
-# include_directories( ${OpenCV_INCLUDE_DIRS} )
-# add_executable( analyze.out analyze.cpp )
-# target_link_libraries( analyze.out ${OpenCV_LIBS} )
+target_link_libraries( ZebrafishTracker ${OpenCV_LIBS} )
