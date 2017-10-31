@@ -16,6 +16,9 @@ include_directories( ${Boost_INCLUDE_DIRS} )
 find_package( OpenCV REQUIRED )
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 
+find_package( LibSerial REQUIRED )
+include_directories( ${LIBSERIAL_INCLUDE_DIRS} )
+
 add_executable(ZebrafishTracker
   ${PROJECT_SOURCE_DIR}/src/ZebrafishTracker.cpp
   ${PROJECT_SOURCE_DIR}/src/FrameRateCounter.cpp)
@@ -23,3 +26,4 @@ add_executable(ZebrafishTracker
 target_link_libraries( ZebrafishTracker ${FLYCAPTURE_LIBRARIES})
 target_link_libraries( ZebrafishTracker ${Boost_LIBRARIES} )
 target_link_libraries( ZebrafishTracker ${OpenCV_LIBS} )
+target_link_libraries( ZebrafishTracker ${LIBSERIAL_LIBRARIES} )

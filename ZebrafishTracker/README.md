@@ -15,6 +15,7 @@ License:
 ```shell
 sudo apt-get install cmake
 sudo apt-get install libboost-all-dev
+sudo apt-get install libserial-dev
 mkdir build
 cd build
 cmake ..
