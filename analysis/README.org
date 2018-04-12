@@ -1,0 +1,14 @@
+#+TITLE: zebrafish_tracker analysis
+#+AUTHOR: Peter Polidoro
+#+EMAIL: peterpolidoro@gmail.com
+
+* Package Information
+  - Author :: Peter Polidoro
+  - License :: BSD
+
+* Installation
+
+  #+BEGIN_SRC sh
+cmake .
+make
+  #+END_SRC

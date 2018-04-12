@@ -1,0 +1,19 @@
+#+TITLE: ZebrafishTracker
+#+AUTHOR: Peter Polidoro
+#+EMAIL: peterpolidoro@gmail.com
+
+* Package Information
+  - Author :: Peter Polidoro
+  - License :: BSD
+
+* Installation
+
+  #+BEGIN_SRC sh
+sudo apt-get install cmake
+sudo apt-get install libboost-all-dev
+sudo apt-get install libserial-dev
+mkdir build
+cd build
+cmake ..
+make
+  #+END_SRC
