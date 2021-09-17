@@ -1,6 +1,6 @@
 #+TITLE: zebrafish_tracker analysis
 #+AUTHOR: Peter Polidoro
-#+EMAIL: peterpolidoro@gmail.com
+#+EMAIL: peter@polidoro.io
 
 * Package Information
   - Author :: Peter Polidoro
